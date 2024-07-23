@@ -1,1 +1,233 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenny Roy Elphej | Software Engineer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Kenny Roy Elphej</h1>
+            <p>Software Engineer</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Committed developer with experience in JavaScript, TypeScript, Java, Kotlin, C#, HTML, and CSS. Exceptional cooperation skills and a track record in application development with Android, Windows Forms, and the Windows Presentation Platform. In addition, Angular, VueJs, Spring Boot, NestJS, and ExpressJS. Redis, SequelizeORM, TypeORM, MongoDB, MySQL, PostgreSQL, SQLite, and more.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <ul>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>Java</li>
+                <li>Kotlin</li>
+                <li>C#</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Angular</li>
+                <li>VueJs</li>
+                <li>Spring Boot</li>
+                <li>NestJS</li>
+                <li>ExpressJS</li>
+                <li>Redis</li>
+                <li>SequelizeORM</li>
+                <li>TypeORM</li>
+                <li>MongoDB</li>
+                <li>MySQL</li>
+                <li>PostgreSQL</li>
+                <li>SQLite</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="job">
+                <h3>Senior Software Engineer at GETRYT</h3>
+                <p>June 2022 - Present | Chennai, Tamil Nadu, India</p>
+                <ul>
+                    <li>Develop high-quality software design and architecture</li>
+                    <li>Identify, prioritize and execute tasks in the software development life cycle</li>
+                    <li>Develop tools and applications by producing clean, efficient code</li>
+                    <li>Review and debug code</li>
+                    <li>Perform validation and verification testing</li>
+                    <li>Collaborate with internal teams and vendors to fix and improve products</li>
+                    <li>Document development phases and monitor systems</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Software Engineer at Novatium Solutions Pvt. Ltd</h3>
+                <p>September 2020 - June 2022 | Chennai, Tamil Nadu, India</p>
+                <ul>
+                    <li>Researching, developing, implementing, and managing applications</li>
+                    <li>Testing and evaluating new applications</li>
+                    <li>Identifying areas of improvements in existing applications and subsequently developing modifications to improve</li>
+                    <li>Writing and implementing efficient code</li>
+                    <li>Working closely with other developers, UX designers, business and systems analysts</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>If you'd like to get in touch, feel free to email me at <a href="mailto:kennyroyelphej@example.com">kennyroyelphej@example.com</a> or connect with me on <a href="https://www.linkedin.com/in/kennyroyelphej" target="_blank">LinkedIn</a>.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kenny Roy Elphej</p>
+        </div>
+    </footer>
+</body>
+<style>
+  /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #eee;
+    background-color: #121212;
+}
+
+/* Header Styles */
+header {
+    background: #1f1f1f;
+    color: #eee;
+    padding: 20px 0;
+    border-bottom: 3px solid #77A6F7;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease-in-out;
+}
+
+header.scrolled {
+    background: #000;
+}
+
+header a {
+    color: #eee;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+header a:hover {
+    color: #77A6F7;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+}
+
+header li {
+    display: inline;
+    padding: 0 20px;
+}
+
+/* Container Styles */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Section Styles */
+section {
+    padding: 60px 20px;
+    color: #eee;
+}
+
+section#about, section#contact {
+    background: #1f1f1f;
+}
+
+section#skills ul {
+    list-style: none;
+}
+
+section#skills ul li {
+    background: #77A6F7;
+    color: #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+    display: inline-block;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+section#skills ul li:hover {
+    background: #66a3e1;
+}
+
+/* Project and Job Styles */
+.project, .job {
+    margin-bottom: 20px;
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.project:hover, .job:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer Styles */
+footer {
+    background: #1f1f1f;
+    color: #eee;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header nav {
+        float: none;
+        text-align: center;
+    }
+
+    header ul {
+        padding: 0;
+    }
+
+    header li {
+        display: block;
+        padding: 10px 0;
+    }
+
+    .container {
+        width: 90%;
+    }
+}
+</style>
+</html>
