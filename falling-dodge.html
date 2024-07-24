@@ -12,6 +12,7 @@
             align-items: center;
             height: 100vh;
             background: #333;
+            flex-direction: column;
         }
         canvas {
             background: #fff;
@@ -23,51 +24,54 @@
             padding: 10px 20px;
             font-size: 16px;
         }
+        #slider {
+            width: 80%;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <input type="range" id="slider" min="0" max="400" value="200">
     <button id="retryButton">Retry</button>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const retryButton = document.getElementById('retryButton');
-        
+        const slider = document.getElementById('slider');
+
         // Game variables
-        let playerX = canvas.width / 2;
         const playerWidth = 50;
         const playerHeight = 50;
         const playerSpeed = 5;
-        
+
         let obstacles = [];
         const obstacleWidth = 50;
         const obstacleHeight = 50;
         const obstacleSpeed = 2;
         let gameOver = false;
-        
-        // Player control
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft' && playerX > 0) {
-                playerX -= playerSpeed;
-            } else if (e.key === 'ArrowRight' && playerX < canvas.width - playerWidth) {
-                playerX += playerSpeed;
-            }
+
+        // Player control via slider
+        slider.addEventListener('input', (e) => {
+            playerX = e.target.value - playerWidth / 2;
         });
-        
+
+        let playerX = canvas.width / 2 - playerWidth / 2;
+
         // Create obstacles
         function createObstacle() {
             const x = Math.random() * (canvas.width - obstacleWidth);
             obstacles.push({ x: x, y: -obstacleHeight });
         }
-        
+
         // Update game state
         function update() {
             if (gameOver) return;
-        
+
             // Move obstacles
             for (let i = 0; i < obstacles.length; i++) {
                 obstacles[i].y += obstacleSpeed;
-                
+
                 // Check collision
                 if (
                     playerX < obstacles[i].x + obstacleWidth &&
@@ -77,35 +81,36 @@
                 ) {
                     gameOver = true;
                     retryButton.style.display = 'block'; // Show retry button
+                    slider.disabled = true; // Disable slider
                 }
             }
-        
+
             // Remove off-screen obstacles
             obstacles = obstacles.filter(obstacle => obstacle.y < canvas.height);
-        
+
             // Create new obstacles
             if (Math.random() < 0.02) {
                 createObstacle();
             }
-        
+
             draw();
             requestAnimationFrame(update);
         }
-        
+
         // Draw game objects
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
             // Draw player
             ctx.fillStyle = 'blue';
             ctx.fillRect(playerX, canvas.height - playerHeight, playerWidth, playerHeight);
-        
+
             // Draw obstacles
             ctx.fillStyle = 'red';
             for (let i = 0; i < obstacles.length; i++) {
                 ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacleWidth, obstacleHeight);
             }
-        
+
             // Draw game over message
             if (gameOver) {
                 ctx.fillStyle = 'black';
@@ -113,17 +118,18 @@
                 ctx.fillText('Game Over', canvas.width / 4, canvas.height / 2);
             }
         }
-        
+
         // Handle retry button click
         retryButton.addEventListener('click', () => {
             // Reset game state
-            playerX = canvas.width / 2;
+            playerX = canvas.width / 2 - playerWidth / 2;
             obstacles = [];
             gameOver = false;
             retryButton.style.display = 'none'; // Hide retry button
+            slider.disabled = false; // Enable slider
             update(); // Restart the game
         });
-        
+
         // Start the game
         update();
     </script>
