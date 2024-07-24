@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falling Dodge</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #333;
+        }
+        canvas {
+            background: #fff;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game variables
+        let playerX = canvas.width / 2;
+        const playerWidth = 50;
+        const playerHeight = 50;
+        const playerSpeed = 5;
+
+        const obstacles = [];
+        const obstacleWidth = 50;
+        const obstacleHeight = 50;
+        const obstacleSpeed = 2;
+        let gameOver = false;
+
+        // Player control
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && playerX > 0) {
+                playerX -= playerSpeed;
+            } else if (e.key === 'ArrowRight' && playerX < canvas.width - playerWidth) {
+                playerX += playerSpeed;
+            }
+        });
+
+        // Create obstacles
+        function createObstacle() {
+            const x = Math.random() * (canvas.width - obstacleWidth);
+            obstacles.push({ x: x, y: -obstacleHeight });
+        }
+
+        // Update game state
+        function update() {
+            if (gameOver) return;
+
+            // Move obstacles
+            for (let i = 0; i < obstacles.length; i++) {
+                obstacles[i].y += obstacleSpeed;
+                
+                // Check collision
+                if (
+                    playerX < obstacles[i].x + obstacleWidth &&
+                    playerX + playerWidth > obstacles[i].x &&
+                    canvas.height - playerHeight < obstacles[i].y + obstacleHeight &&
+                    canvas.height > obstacles[i].y
+                ) {
+                    gameOver = true;
+                }
+            }
+
+            // Remove off-screen obstacles
+            obstacles = obstacles.filter(obstacle => obstacle.y < canvas.height);
+
+            // Create new obstacles
+            if (Math.random() < 0.02) {
+                createObstacle();
+            }
+
+            draw();
+            requestAnimationFrame(update);
+        }
+
+        // Draw game objects
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw player
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(playerX, canvas.height - playerHeight, playerWidth, playerHeight);
+
+            // Draw obstacles
+            ctx.fillStyle = 'red';
+            for (let i = 0; i < obstacles.length; i++) {
+                ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacleWidth, obstacleHeight);
+            }
+
+            // Draw game over message
+            if (gameOver) {
+                ctx.fillStyle = 'black';
+                ctx.font = '48px sans-serif';
+                ctx.fillText('Game Over', canvas.width / 4, canvas.height / 2);
+            }
+        }
+
+        // Start the game
+        update();
+    </script>
+</body>
+</html>
