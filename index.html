@@ -20,9 +20,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-CCiYifDb.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CT-n2BWr.css">
+    <script type="module" crossorigin src="/assets/index-Cuc2nOmH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Ca0_6vUd.css">
   </head>
+  <script>
+    try {
+      var t = localStorage.getItem('theme') || 'system';
+      if (t === 'system') {
+        t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch(e) {}
+  </script>
   <body>
     <div id="root"></div>
   </body>
